@@ -1,3 +1,5 @@
+/** @format */
+
 // sketch.js
 /** @format */
 
@@ -111,16 +113,18 @@ function moverPelota() {
 }
 
 function moverComputadora() {
-  if (pelotaY > computadoraY + altoRaqueta / 2) {
-    computadoraY += 4;
-  } else if (pelotaY < computadoraY + altoRaqueta / 2) {
-    computadoraY -= 4;
+  if (velocidadPelotaX > 0) {
+    if (pelotaY > computadoraY + altoRaqueta / 2) {
+      computadoraY += 4;
+    } else if (pelotaY < computadoraY + altoRaqueta / 2) {
+      computadoraY -= 4;
+    }
+    computadoraY = constrain(
+      computadoraY,
+      grosorMarco,
+      height - grosorMarco - altoRaqueta
+    );
   }
-  computadoraY = constrain(
-    computadoraY,
-    grosorMarco,
-    height - grosorMarco - altoRaqueta
-  );
 }
 
 function verificarColisiones() {
@@ -180,9 +184,9 @@ function resetPelota() {
 }
 
 function keyPressed() {
-  if (keyCode === UP_ARROW) {
+  if (keyCode === UP_ARROW || keyCode === 87) {
     jugadorY -= 50;
-  } else if (keyCode === DOWN_ARROW) {
+  } else if (keyCode === DOWN_ARROW || keyCode === 83) {
     jugadorY += 50;
   }
   jugadorY = constrain(
